@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Counter App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f1836b;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    #count {
+      font-size: 64px;
+      margin: 20px 0;
+      transition: color 0.3s ease;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .increment {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .decrement {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .reset {
+      background-color: #2196F3;
+      color: white;
+    }
+
+    /* Optional: Color change based on value */
+    .positive {
+      color: #4CAF50;
+    }
+
+    .neutral {
+      color: #333;
+    }
+
+    .negative {
+      color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Counter App</h1>
+    <div id="count" class="neutral">0</div>
+    <div class="buttons">
+      <button class="decrement">➖ Decrement</button>
+      <button class="reset">🔁 Reset</button>
+      <button class="increment">➕ Increment</button>
+    </div>
+  </div>
+
+  <script>
+    const countEl = document.getElementById('count');
+    const incBtn = document.querySelector('.increment');
+    const decBtn = document.querySelector('.decrement');
+    const resetBtn = document.querySelector('.reset');
+
+    let count = 0;
+
+    function updateDisplay() {
+      countEl.textContent = count;
+
+      // Change color based on value
+      if (count > 0) {
+        countEl.className = 'positive';
+      } else if (count < 0) {
+        countEl.className = 'negative';
+      } else {
+        countEl.className = 'neutral';
+      }
+    }
+
+    incBtn.addEventListener('click', () => {
+      count++;
+      updateDisplay();
+    });
+
+    decBtn.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        updateDisplay();
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      count = 0;
+      updateDisplay();
+    });
+
+    updateDisplay(); // Initial call
+  </script>
+</body>
+</html>
